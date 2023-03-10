@@ -1,0 +1,687 @@
+@import url(common.css);
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@font-face {
+  font-family: 'HS-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/HS-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}/* 산토끼체 */
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}/* g마켓산스 */
+
+html{scroll-behavior: smooth;}
+body{
+  text-decoration-line: none;
+}
+
+/* topbutton */
+.top{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  font-family: 'HS-Regular';
+  z-index: 1;/* 탑버튼이 맨 위에 */
+  border-radius: 50%;
+  background-color: yellow;
+}
+.top a{
+  display: block;
+  width: 40px;
+  height:40px;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 8px;
+  color: rgb(72, 72, 228);
+  text-decoration-line: none;
+
+}
+.top a:hover{
+  color: rgb(248, 193, 92);
+  font-size: 25px;
+}
+
+
+
+
+
+
+header{
+  width: 100%;
+  height: 50px;
+/*   background-color: #2b2f3a; */
+  position: relative;
+  z-index: 100;  /* 메뉴가 맨위로 올라오게 함 */
+}
+nav{
+  position: relative; /* 왼쪽서브배경박스의 이미지 위치기준 */
+  width: 1200px;
+  height: inherit;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+nav h1{ /* logo */
+  margin-left: 30px;
+  margin-top: 10px;
+}
+/* main */
+
+.gnb{
+  width: 70%;
+  display: flex;
+}
+
+.gnb>.main{
+  /* border: 1px solid red; */
+  width: 150px;
+  text-align: center;
+}
+
+.gnb>.main>a{
+  font-family: 'GmarketSansMedium';
+  position: relative;
+  display: block;
+  width: inherit;
+  height: 50px;
+  color: rgb(248, 196, 24);
+/*   color: #7a8189; */
+  font-size: 20px;
+	font-weight:500;
+  line-height: 50px;
+  margin-top: 20px;
+}
+
+/* Sub Menu*/
+.sub_all{
+  font-family: 'GmarketSansMedium';
+  font-weight:200;
+  display: none;  /*서브메뉴 감추기->jQuery에서 보이게 함*/
+  position:absolute;
+	top:100%; 
+  z-index: 200;
+/*   border-left:solid 1px #e8e8e8; */
+  padding-top: 10px;
+	width:150px;
+	height:220px;
+/*   background: #fff; */
+}
+.last{border-right:none;}
+.sub_all li{
+  width: inherit;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+.sub_all li a {
+	color: #666;
+	font-size: 15px;
+  font-weight: 400;
+}
+.sub_all li:hover a{  color: rgb(86, 86, 245);}
+
+/*100%서브배경박스*/
+.sub_bgbox{ 
+  display:none;
+  position: absolute;
+  top: 150%;
+  left: 20px;
+	width:100%;
+	height:230px; 
+/* 	background: #fff; */
+}
+
+/* 서브왼쪽배경이미지 */	
+.subBoxImg ul li{  /*모든 이미지를 한 위치에 겹쳐놓음*/
+  display:none;
+	position:absolute;
+	top:60px;
+	left:50px;
+	z-index:300;
+}
+
+
+
+/* 메인 비주얼  */
+.fadeShow{
+/*   border: 1px solid #000; */
+  width: 100%;
+  height: 600px;
+  margin-top: 15px; 
+  /* 메뉴바 만들고 띄울지 말지 고민*/}
+/* (1) 이미지 모두 동일한 위치, 안보이게함 */
+.changeimg ul li{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 3px; /* 메인비주얼 이미지 양옆띄우기 */
+  margin-top: 62px; 
+}
+/* (2) 첫번째 이미지만 보임 */
+.changeimg ul li:first-child{
+  display: block;
+  margin-top: 62px; 
+}
+
+
+.icon{
+  font-size: 80px;
+  color: #fff;
+}
+.side_btn .lbtn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 30px;
+  width: 65px;
+  height: 65px;
+}
+.side_btn .lbtn:hover{opacity: 0.5;}
+.side_btn .rbtn:hover{opacity: 0.5;}
+.side_btn .rbtn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 30px;
+  width: 65px;
+  height: 65px;
+}
+
+.wrapper{
+  width: 150px;
+  height: 150px;
+/*   margin-top: 150px;
+  margin-left:560px; */
+  position: absolute;
+  animation: motion 0.7s /* 속도 */
+  linear 0s   /* 처음부터 끝까지 일정 속도로 진행 */
+  infinite alternate; /* 무한 반복 */}
+  @keyframes motion {
+    0% {margin-top: 150px;} /* 처음 위치 */
+    100% {margin-top: 160px;} /* 마지막 위치 */
+    }
+
+.one{
+  margin-left: 560px;
+}
+.two{
+  margin-bottom: 200px;
+  margin-left:1285px;
+  width: 300px;
+  height: 300px;
+}
+.three{
+  width: 300px;
+  height: 300px;
+  margin-left: 35px;
+  margin-top: -180px;
+}
+/* 컨텐츠1 */
+.container{  
+  position: relative;
+  /* background: url(../image/Untitled-2.png)no-repeat center; */
+  background-size: 100%;
+  width: 100%;
+  height: 800px;}
+
+  .container img{
+    width: 350px;
+    height: 300px;
+  }
+
+ h2{/* 와플대학 인기메뉴 */
+  font-family: 'HS-Regular';
+  font-size: 60px;
+  font-weight: 300;
+  color: rgb(99, 99, 248);
+  text-shadow: 0px 0px 10px rgb(255, 141, 11);
+  margin: 60px;
+  margin-left: 80px;
+  padding-top: 220px;
+  text-align: center;
+}
+
+.card1{ /* 딸기 */
+  position: absolute;
+  top: 420px;
+  left: 780px;
+  /* border: 1px solid #000; */
+  width: 420px;
+  height: 350px;
+  background-color: #fff;
+  transition: 0.5s;
+  box-shadow: 2px 3px 5px 5px rgba(0,0,0,0.1);
+  border-radius: 20px;
+}
+.content2-1 {
+  position: relative;
+  text-align: center;
+  /* border: 1px solid yellow; */
+  border-radius: 20px;
+  width: 420px;
+  height: 350px;
+}
+.content2-1 .info {
+  font-family: 'GmarketSansMedium';
+  font-size: 18px;
+  color:#222 ;
+  position: absolute; 
+  left: 0; 
+  bottom: 0;
+  background: linear-gradient(to top, rgb(252, 170, 170), transparent);
+  width: 100%;
+  height: 125px;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+}
+.content2-1 .info span {color: rgb(255, 40, 76);}
+.content2-1:hover .info {
+  opacity: 1;
+}
+
+.info p{
+  margin-top: 24px;
+  line-height: 18px;}
+.content2-1 h3 {
+  font-size: 30px;
+  font-family: 'HS-Regular';
+  font-weight: 300;
+  color: rgb(252, 170, 170);
+  transition: 0.5s;
+}
+.card1:hover .content2-1 h3{opacity: 0;}
+.card1 img{
+  margin-left: 22px;
+}
+
+
+
+
+.card2 {/* 오레오 */
+  position: absolute;
+  top: 70px;
+  left: 770px;
+  width: 450px;
+  height: 300px;
+  background-color: #fff;
+  transition: 0.5s;
+  box-shadow: 2px 3px 5px 5px rgba(0,0,0,0.1);
+  border-radius: 20px;
+}
+.card2 img{
+  margin-left: 8px;
+  margin-top: -35px;
+}
+
+.content2-2 {
+  position: relative;
+  text-align: center;
+  border-radius: 20px;
+  width: inherit;
+  height: 300px;
+}
+.content2-2 .info {
+  font-family: 'GmarketSansMedium';
+  font-size: 18px;
+  color:#fff ;
+  position: absolute; 
+  left: 0; 
+  bottom: 0;
+  background: linear-gradient(to top, rgb(113, 190, 241), transparent);
+  width: 100%;
+  height: 125px;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+}
+.content2-2 .info span {color: rgb(11, 156, 253);}
+.content2-2:hover .info {
+  opacity: 1;
+}
+.content2-2 .info p{
+  margin-top: 13px;
+  line-height: 28px;}
+
+  .content2-2 h3 {
+    font-size: 30px;
+    font-family: 'HS-Regular';
+    font-weight: 300;
+    color: rgb(11, 156, 253);
+    transition: 0.5s;
+  }
+  .card2:hover .content2-2 h3{opacity: 0;}
+
+
+
+
+.card3 {/* 자몽에이드 */
+  position: absolute;
+  top: 290px;
+  left: 1270px;
+  width: 380px;
+  height: 480px;
+  background-color: #fff;
+  transition: 0.5s;
+  box-shadow: 2px 3px 5px 5px rgba(0,0,0,0.1);
+  border-radius: 20px;
+}
+.card3 img{
+  margin-top: 50px;
+  margin-left: 6px;
+}
+.content2-3{
+  position: relative;
+  text-align: center;
+  border-radius: 20px;
+  width: 380px;
+  height: 480px;
+}
+.content2-3 .info {
+  font-family: 'GmarketSansMedium';
+  font-size: 18px;
+  color:#222 ;
+  position: absolute; 
+  left: 0; 
+  bottom: 0;
+  background: linear-gradient(to top, rgb(255, 105, 78), transparent);
+  width: 100%;
+  height: 160px;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+}
+.content2-3 .info span {color: rgb(255, 40, 76);}
+.content2-3:hover .info {
+  opacity: 1;
+}
+.content2-3 .info p{
+  margin-top: 33px;
+  line-height: 25px;}
+.content2-3 h3 {
+  font-size: 30px;
+  font-family: 'HS-Regular';
+  font-weight: 300;
+  color: rgb(255, 40, 76);
+  transition: 0.5s;
+}
+.card3:hover .content2-3 h3{opacity: 0;}
+
+
+
+
+
+.card4 {/* 애플시나몬 */
+  position: absolute;
+  top: 320px;
+  left: 350px;
+  /* border: 1px solid green; */
+  background-color: #fff;
+  height: 450px;
+  transition: 0.5s;
+  box-shadow: 2px 3px 5px 5px rgba(0,0,0,0.1);
+  border-radius: 20px;
+}
+.content2-4 {
+  position: relative;
+  text-align: center;
+  /* border: 1px solid yellow; */
+  border-radius: 20px;
+  width: 350px;
+  height: 450px;
+}
+.content2-4 .info {
+  font-family: 'GmarketSansMedium';
+  font-size: 18px;
+  color:#fff;
+  position: absolute; 
+  left: 0; 
+  bottom: 0;
+  background: linear-gradient(to top, rgb(255, 202, 132), transparent);
+  width: 100%;
+  height: 165px;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+}
+.content2-4 .info span {color:  rgb(255, 202, 132);}
+.content2-4:hover .info {
+  opacity: 1;
+}
+.content2-4 .info p{
+  margin-top: 40px;
+  line-height: 18px;}
+  .content2-4 h3 {
+    font-size: 30px;
+    font-family: 'HS-Regular';
+    font-weight: 300;
+    color:  rgb(255, 174, 68);
+    transition: 0.5s;
+  }
+  .card4:hover .content2-4 h3{opacity: 0;}
+
+
+
+
+/* 와플대학쿠폰 */
+.coupon{
+  position: absolute;
+  width:250px;
+  height: 180px;
+  /* border: 1px solid purple; */
+  top: 90px;
+  left: 400px;
+  background-color: #fff;
+  transition: 0.5s;
+  box-shadow: 2px 3px 5px 5px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  background-color: rgb(191, 233, 250);
+  cursor: pointer;
+}
+.coupon h3{
+  font-family: 'HS-Regular';
+  font-size: 30px;
+  font-weight: 400;
+  margin-top: 50px;
+  margin-left: 78px;
+  color: rgb(255, 193, 59);
+}
+.coupon p{
+  font-family: 'GmarketSansMedium';
+  margin-left: 50px;
+}
+.coupon span{
+  font-family: 'GmarketSansMedium';
+  margin-left: 79px;
+  color: #fff;
+}
+.coupon:hover{background-color:rgb(255, 193, 59) ;}
+.coupon:hover h3{color:rgb(72, 72, 228) ;}
+.coupon:hover p{color: #fff;}
+.coupon:hover span{color: #222;}
+
+
+.bottom{
+  width: 100%;
+  height: 600px;
+  background: url(../image/bt.jpg) no-repeat bottom center fixed;
+  background-size: cover;
+  transition: 0.5s;
+  position: relative;
+}
+
+
+
+
+
+/* 컨텐츠2 */
+
+.four{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  margin-bottom: 50px;
+}
+.four h2{
+  text-align: center;
+  font-family: 'GmarketSansMedium';
+  color:#222;
+  text-shadow: none;
+  font-size: 30px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+.first1>img{
+  width: 600px;
+  transition: 0.5s;
+  overflow: hidden;
+  margin-bottom: 3px;
+}
+
+.first1 p{
+  text-align: right;
+  font-family: 'GmarketSansMedium';
+  color:rgb(132, 132, 255) ;
+  padding: 20px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.first2>img{
+  height: 400px;
+  width: 500px;
+  height: 370px;
+  margin-bottom: 25px;
+  transition: 0.5s;
+}
+.first2 p{
+  text-align: right;
+  font-family: 'GmarketSansMedium';
+  color:rgb(132, 132, 255) ;
+  margin-bottom: 35px;
+  margin-top: 5px;
+  margin-right: 20px;
+  line-height: 0;
+  cursor: pointer;
+  transition: 0.4s;
+  
+}
+.first3>img{
+  height: 375px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+.first3 p{
+  text-align: right;
+  font-family: 'GmarketSansMedium';
+  color:rgb(132, 132, 255) ;
+  margin-bottom: 45px;
+  margin-top: 10px;
+  margin-right: 20px;
+  line-height: 0;
+  cursor: pointer;
+  transition: 0.4s;
+}
+/* h2 효과 */
+.four h2::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 4px;
+  background-color: rgb(255, 193, 59);
+  transition: 0.5s;
+  transform: translateX(-50%);
+}
+.four h2:hover::before{width: 70%;}
+/* .four h2:hover:img{  
+  transform: translateY(-20px);
+  border-radius: 70px;
+  cursor: pointer;} */
+/* 호버 */
+.first1 img:hover{
+  transform: translateY(-20px);
+  border-radius: 70px;
+  cursor: pointer;
+}
+.first2 img:hover{
+  transform: translateY(-20px);
+  border-radius: 70px;
+  cursor: pointer;
+}
+.first3 img:hover{
+  transform: translateY(-20px);
+  border-radius: 70px;
+  cursor: pointer;
+}
+
+
+.first1 h2::before{
+  content: '';
+  width: 0;
+  height: 3px;
+  color: yellow;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.5s;
+}
+.first1 h2:hover::before{width: 50%;}
+
+.four p:hover{
+  font-size: 18px;
+  color: dodgerblue;
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer */
+footer{
+  border: 1px solid#fff;
+  width: 100%;
+  height: 150px;
+  text-align: center;
+  background-color: #f8e9a8
+}
+footer p{
+  margin-top: 30px;
+  font-size: 14px;
+}
+footer strong{
+  color: rgb(72, 72, 228);
+
+}
+footer address{
+  font-style: normal;
+}
